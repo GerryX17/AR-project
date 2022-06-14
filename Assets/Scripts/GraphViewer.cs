@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//TFG By Gerard Opazo
 public class GraphViewer : MonoBehaviour
 {
     [System.Serializable]

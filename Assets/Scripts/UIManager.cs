@@ -9,7 +9,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainMenuCanvas;
     [SerializeField] private GameObject selectorMenuCanvas;
     [SerializeField] private GameObject ARPositionMenuCanvas;    
-    [SerializeField] private GameObject inputIDSelector;
+    [SerializeField] private GameObject InputIDCanvas;
+
+    private bool toggleUIIDs;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +35,22 @@ public class UIManager : MonoBehaviour
         ARPositionMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
         ARPositionMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
-        inputIDSelector.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
-        inputIDSelector.transform.GetChild(1).transform.DOScale(new Vector3(3, 2, 1), 0.3f);
+        toggleUIIDs = !toggleUIIDs;
+        if (toggleUIIDs)
+        {
+            InputIDCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+            InputIDCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        }
+        else
+        {
+            InputIDCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+            InputIDCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+            InputIDFieldUIManager.instance.HideIDField();
+            ImgRecognitionUIManager.instance.HideUIImageRecognition();
+        }
+
+
+
     }
 
     private void ActivateMainMenu()
@@ -50,8 +66,9 @@ public class UIManager : MonoBehaviour
         ARPositionMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
         ARPositionMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
-        inputIDSelector.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        inputIDSelector.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+
+        InputIDCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        InputIDCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
     }
 
@@ -67,9 +84,6 @@ public class UIManager : MonoBehaviour
 
         ARPositionMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
         ARPositionMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
-
-        inputIDSelector.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        inputIDSelector.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
     }
 
     private void ActivateSelectorMenu()
@@ -81,13 +95,15 @@ public class UIManager : MonoBehaviour
         selectorMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.5f);
         selectorMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
         selectorMenuCanvas.transform.GetChild(1).transform.DOMoveY(300, 0.3f);
-
-        inputIDSelector.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        inputIDSelector.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
     }
-    // Update is called once per frame
-    void Update()
+
+    public void OnImageRecognition() 
     {
-        
+        InputIDCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+    }
+
+    public void OnInputField() 
+    {
+        InputIDCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
     }
 }

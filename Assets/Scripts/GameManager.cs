@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     {
         OnMainMenu?.Invoke();
         Debug.Log("Main Menu is activated");
-
     }
     public void SelectorMenu()
     {
@@ -58,3 +57,4 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 }
+
