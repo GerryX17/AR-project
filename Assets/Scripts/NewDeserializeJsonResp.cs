@@ -39,6 +39,6 @@ public class NewDeserializeJsonResp
         public List<double> car_speed_hist_0to70plus { get; set; }
         public List<double> car_speed_hist_0to120plus { get; set; }
         public string timezone { get; set; }
-        public double v85 { get; set; }
+        public double? v85 { get; set; }
     }
 }
